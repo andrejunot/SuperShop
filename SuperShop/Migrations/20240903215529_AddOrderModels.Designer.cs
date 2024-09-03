@@ -10,7 +10,7 @@ using SuperShop.Data;
 namespace SuperShop.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240903191615_AddOrderModels")]
+    [Migration("20240903215529_AddOrderModels")]
     partial class AddOrderModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -228,7 +228,7 @@ namespace SuperShop.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("OrderDetailTemps");
+                    b.ToTable("OrderDetailsTemp");
                 });
 
             modelBuilder.Entity("SuperShop.Data.Entities.Product", b =>

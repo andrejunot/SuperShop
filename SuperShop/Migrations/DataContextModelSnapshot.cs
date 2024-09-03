@@ -226,7 +226,7 @@ namespace SuperShop.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("OrderDetailTemps");
+                    b.ToTable("OrderDetailsTemp");
                 });
 
             modelBuilder.Entity("SuperShop.Data.Entities.Product", b =>

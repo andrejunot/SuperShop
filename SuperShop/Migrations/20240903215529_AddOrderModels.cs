@@ -8,7 +8,7 @@ namespace SuperShop.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "OrderDetailTemps",
+                name: "OrderDetailsTemp",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -20,15 +20,15 @@ namespace SuperShop.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderDetailTemps", x => x.Id);
+                    table.PrimaryKey("PK_OrderDetailsTemp", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderDetailTemps_AspNetUsers_UserId",
+                        name: "FK_OrderDetailsTemp_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_OrderDetailTemps_Products_ProductId",
+                        name: "FK_OrderDetailsTemp_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -95,13 +95,13 @@ namespace SuperShop.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetailTemps_ProductId",
-                table: "OrderDetailTemps",
+                name: "IX_OrderDetailsTemp_ProductId",
+                table: "OrderDetailsTemp",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetailTemps_UserId",
-                table: "OrderDetailTemps",
+                name: "IX_OrderDetailsTemp_UserId",
+                table: "OrderDetailsTemp",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -116,7 +116,7 @@ namespace SuperShop.Migrations
                 name: "OrderDetails");
 
             migrationBuilder.DropTable(
-                name: "OrderDetailTemps");
+                name: "OrderDetailsTemp");
 
             migrationBuilder.DropTable(
                 name: "Orders");
