@@ -21,8 +21,6 @@ namespace SuperShop.Data
         }
 
 
-
-
         public async Task AddItemToOrderAsync(AddItemViewModel model, string userName)
         {
             var user = await _userHelper.GetUserByEmailAsync(userName);
