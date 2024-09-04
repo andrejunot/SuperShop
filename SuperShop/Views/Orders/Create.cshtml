@@ -91,3 +91,35 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var id = 0;
+            $("#btnConfirm").click(function () {
+                $("#confirmDialog").modal("show");
+                return false;
+            });
+            $("#btnNoConfirm").click(function () {
+                $("#confirmDialog").modal("hide");
+                return false;
+            });
+            $("#btnYesConfirm").click(function () {
+                window.location.href = "/Orders/ConfirmOrder";
+            });
+            $("a[id*=btnDeleteItem]").click(function () {
+                debugger;
+                id = $(this).parent()[0].id;
+                $("#deleteDialog").modal("show");
+                return false;
+            });
+            $("#btnNoDelete").click(function () {
+                $("#deleteDialog").modal("hide");
+                return false;
+            });
+            $("#btnYesDelete").click(function () {
+                window.location.href = "/Orders/DeleteItem/" + id;
+            });
+        });
+    </script>
+}
