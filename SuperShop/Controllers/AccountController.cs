@@ -12,24 +12,30 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Razor.Language.Intermediate;
+using Newtonsoft.Json.Linq;
 
 namespace SuperShop.Controllers
 {
     public class AccountController : Controller
     {
         private readonly IUserHelper _userHelper;
+        private readonly IMailHelper _mailHelper;
         private readonly IConfiguration _configuration;
         private readonly ICountryRepository _countryRepository;
 
         public AccountController(
-           IUserHelper userHelper,
-           IConfiguration configuration,
-           ICountryRepository countryRepository)
+            IUserHelper userHelper,
+            IMailHelper mailHelper,
+            IConfiguration configuration,
+            ICountryRepository countryRepository)
         {
             _userHelper = userHelper;
+            _mailHelper = mailHelper;
             _configuration = configuration;
             _countryRepository = countryRepository;
         }
+
 
         public IActionResult Login()
         {
@@ -41,14 +47,14 @@ namespace SuperShop.Controllers
             return View();
         }
 
+
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
-
                 var result = await _userHelper.LoginAsync(model);
-                if ((result.Succeeded))
+                if (result.Succeeded)
                 {
                     if (this.Request.Query.Keys.Contains("ReturnUrl"))
                     {
@@ -59,7 +65,7 @@ namespace SuperShop.Controllers
                 }
             }
 
-            this.ModelState.AddModelError(string.Empty, "Failed to login");
+            this.ModelState.AddModelError(string.Empty, "Failed to login!");
             return View(model);
         }
 
@@ -67,9 +73,9 @@ namespace SuperShop.Controllers
         public async Task<IActionResult> Logout()
         {
             await _userHelper.LogoutAsync();
-
             return RedirectToAction("Index", "Home");
         }
+
 
         public IActionResult Register()
         {
@@ -81,6 +87,7 @@ namespace SuperShop.Controllers
 
             return View(model);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Register(RegisterNewUserViewModel model)
@@ -111,22 +118,29 @@ namespace SuperShop.Controllers
                         return View(model);
                     }
 
-                    var loginViewModel = new LoginViewModel
+                    string myToken = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
+                    string tokenLink = Url.Action("ConfirmEmail", "Account", new
                     {
-                        Password = model.Password,
-                        RememberMe = false,
-                        Username = model.UserName
-                    };
+                        userid = user.Id,
+                        token = myToken
+                    }, protocol: HttpContext.Request.Scheme);
 
-                    var result2 = await _userHelper.LoginAsync(loginViewModel);
-                    if (result2.Succeeded)
+                    Response response = _mailHelper.SendEmail(model.UserName, "Email confirmation", $"<h1>Email Confirmation</h1>" +
+                        $"To allow the user, " +
+                        $"plase click in this link:</br></br><a href = \"{tokenLink}\">Confirm Email</a>");
+
+
+                    if (response.IsSuccess)
                     {
-                        return RedirectToAction("Index", "Home");
+                        ViewBag.Message = "The instructions to allow you user has been sent to email";
+                        return View(model);
                     }
 
                     ModelState.AddModelError(string.Empty, "The user couldn't be logged.");
+
                 }
             }
+
             return View(model);
         }
 
@@ -198,6 +212,7 @@ namespace SuperShop.Controllers
             return View();
         }
 
+
         [HttpPost]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
@@ -209,12 +224,11 @@ namespace SuperShop.Controllers
                     var result = await _userHelper.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("ChangeUser");
+                        return this.RedirectToAction("ChangeUser");
                     }
                     else
                     {
                         this.ModelState.AddModelError(string.Empty, result.Errors.FirstOrDefault().Description);
-
                     }
                 }
                 else
@@ -222,7 +236,6 @@ namespace SuperShop.Controllers
                     this.ModelState.AddModelError(string.Empty, "User not found.");
                 }
             }
-
 
             return this.View(model);
         }
@@ -271,11 +284,34 @@ namespace SuperShop.Controllers
             return BadRequest();
         }
 
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(token))
+            {
+                return NotFound();
+            }
+
+            var user = await _userHelper.GetUserByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var result = await _userHelper.ConfirmEmailAsync(user, token);
+            if (!result.Succeeded)
+            {
+
+            }
+
+            return View();
+
+        }
 
         public IActionResult NotAuthorized()
         {
             return View();
         }
+
 
         [HttpPost]
         [Route("Account/GetCitiesAsync")]
