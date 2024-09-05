@@ -132,7 +132,7 @@ namespace SuperShop.Controllers
                     {
                         imageId = await _blobHelper.UploadBlobAsync(model.ImageFile, "products");
                     }
-
+                    
                     var product = _converterHelper.ToProduct(model, imageId, false);
 
 
