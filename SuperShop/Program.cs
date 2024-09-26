@@ -18,11 +18,9 @@ namespace SuperShop
         private static void RunSeeding(IHost host)
         {
             var scopeFactory = host.Services.GetService<IServiceScopeFactory>();
-            using (var scope = scopeFactory.CreateScope())
-            {
-                var seeder = scope.ServiceProvider.GetService<SeedDb>();
-                seeder.SeedAsync().Wait();
-            }
+            using var scope = scopeFactory.CreateScope();
+            var seeder = scope.ServiceProvider.GetService<SeedDb>();
+            seeder.SeedAsync().Wait();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
