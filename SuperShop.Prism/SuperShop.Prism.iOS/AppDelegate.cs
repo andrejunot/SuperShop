@@ -1,6 +1,7 @@
 ﻿using Foundation;
 using Prism;
 using Prism.Ioc;
+using Syncfusion.SfBusyIndicator.XForms.iOS;
 using UIKit;
 
 
@@ -23,13 +24,14 @@ namespace SuperShop.Prism.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
-            LoadApplication(new App(new iOSInitializer()));
+            new SfBusyIndicatorRenderer();
+            LoadApplication(new App(new IOSInitializer()));
 
             return base.FinishedLaunching(app, options);
         }
     }
 
-    public class iOSInitializer : IPlatformInitializer
+    public class IOSInitializer : IPlatformInitializer
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
