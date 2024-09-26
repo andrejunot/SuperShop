@@ -28,5 +28,10 @@ namespace SuperShop.Prism.Helpers
         public static string AddToCart => Resource.AddToCart;
         public static string Loading => Resource.Loading;
         public static string SearchProduct => Resource.SearchProduct;
+        public static string Stock => Resource.Stock;
+        public static string IsAvailable => Resource.IsAvailable;
+        public static string LastPurchase => Resource.LastPurchase;
+        public static string LastSale => Resource.LastSale;
+
     }
 }
