@@ -2,7 +2,7 @@
 
 namespace SuperShop.Prism.Views
 {
-    public partial class ProductDetailPage : CarouselPage
+    public partial class ProductDetailPage : ContentPage
     {
         public ProductDetailPage()
         {
