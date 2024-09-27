@@ -118,12 +118,62 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\drawable-hdpi\ic_action_menu.png" />
+    <Content Include="Resources\drawable-hdpi\ic_card_giftcard.png" />
+    <Content Include="Resources\drawable-hdpi\ic_exit_to_app.png" />
+    <Content Include="Resources\drawable-hdpi\ic_history.png" />
     <Content Include="Resources\drawable-hdpi\ic_more_vert.png" />
+    <Content Include="Resources\drawable-hdpi\ic_person.png" />
+    <Content Include="Resources\drawable-hdpi\ic_shopping_cart.png" />
+    <Content Include="Resources\drawable-hdpi\shop.png" />
+    <Content Include="Resources\drawable-mdpi\ic_action_menu.png" />
+    <Content Include="Resources\drawable-mdpi\ic_card_giftcard.png" />
+    <Content Include="Resources\drawable-mdpi\ic_exit_to_app.png" />
+    <Content Include="Resources\drawable-mdpi\ic_history.png" />
     <Content Include="Resources\drawable-mdpi\ic_more_vert.png" />
+    <Content Include="Resources\drawable-mdpi\ic_person.png" />
+    <Content Include="Resources\drawable-mdpi\ic_shopping_cart.png" />
+    <Content Include="Resources\drawable-mdpi\shop.png" />
+    <Content Include="Resources\drawable-xhdpi\ic_action_menu.png" />
+    <Content Include="Resources\drawable-xhdpi\ic_card_giftcard.png" />
+    <Content Include="Resources\drawable-xhdpi\ic_exit_to_app.png" />
+    <Content Include="Resources\drawable-xhdpi\ic_history.png" />
     <Content Include="Resources\drawable-xhdpi\ic_more_vert.png" />
+    <Content Include="Resources\drawable-xhdpi\ic_person.png" />
+    <Content Include="Resources\drawable-xhdpi\ic_shopping_cart.png" />
+    <Content Include="Resources\drawable-xhdpi\shop.png" />
+    <Content Include="Resources\drawable-xxhdpi\ic_action_menu.png" />
+    <Content Include="Resources\drawable-xxhdpi\ic_card_giftcard.png" />
+    <Content Include="Resources\drawable-xxhdpi\ic_exit_to_app.png" />
+    <Content Include="Resources\drawable-xxhdpi\ic_history.png" />
     <Content Include="Resources\drawable-xxhdpi\ic_more_vert.png" />
+    <Content Include="Resources\drawable-xxhdpi\ic_person.png" />
+    <Content Include="Resources\drawable-xxhdpi\ic_shopping_cart.png" />
+    <Content Include="Resources\drawable-xxhdpi\shop.png" />
+    <Content Include="Resources\drawable-xxxhdpi\ic_action_menu.png" />
+    <Content Include="Resources\drawable-xxxhdpi\ic_card_giftcard.png" />
+    <Content Include="Resources\drawable-xxxhdpi\ic_exit_to_app.png" />
+    <Content Include="Resources\drawable-xxxhdpi\ic_history.png" />
     <Content Include="Resources\drawable-xxxhdpi\ic_more_vert.png" />
-    <Content Include="Resources\drawable\ic_more_vert.png" />
+    <Content Include="Resources\drawable-xxxhdpi\ic_person.png" />
+    <Content Include="Resources\drawable-xxxhdpi\ic_shopping_cart.png" />
+    <Content Include="Resources\drawable-xxxhdpi\shop.png" />
+    <AndroidResource Include="Resources\drawable\ic_action_menu.png" />
+    <AndroidResource Include="Resources\drawable\ic_card_giftcard.png" />
+    <AndroidResource Include="Resources\drawable\ic_exit_to_app.png" />
+    <AndroidResource Include="Resources\drawable\ic_history.png" />
+    <AndroidResource Include="Resources\drawable\ic_more_vert.png" />
+    <AndroidResource Include="Resources\drawable\ic_person.png" />
+    <AndroidResource Include="Resources\drawable\ic_shopping_cart.png" />
+    <AndroidResource Include="Resources\drawable\shop.png" />
+    <Content Include="Resources\mipmap-anydpi-v26\ic_action_menu.png" />
+    <Content Include="Resources\mipmap-anydpi-v26\ic_card_giftcard.png" />
+    <Content Include="Resources\mipmap-anydpi-v26\ic_exit_to_app.png" />
+    <Content Include="Resources\mipmap-anydpi-v26\ic_history.png" />
+    <Content Include="Resources\mipmap-anydpi-v26\ic_more_vert.png" />
+    <Content Include="Resources\mipmap-anydpi-v26\ic_person.png" />
+    <Content Include="Resources\mipmap-anydpi-v26\ic_shopping_cart.png" />
+    <Content Include="Resources\mipmap-anydpi-v26\shop.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
